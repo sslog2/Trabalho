@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="card-body d-flex flex-column align-items-center">
+  <h1>Detalhes do Jogador: {{ jogador.nome }}</h1>
+</div>
+<div class="card">
+  <div class="card-body">
+    <p class="card-text">
+      <strong>Email:</strong> {{ jogador.email }}
+    </p>
+    <p class="card-text">
+      <strong>Personagens Associados:</strong>
+      {% if jogador.personagens.all %}
+        <ul>
+          {% for personagem in jogador.personagens.all %}
+            <li>
+              <a href="{% url 'app:detalhe_personagem' personagem.pk %}">
+                {{ personagem.nome }}
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        Nenhum personagem associado.
+      {% endif %}
+    </p>
+  </div>
+</div>
+
+<div class="nav-links">
+  <a href="{% url 'app:lista_jogador' %}" class="btn btn-secondary">Voltar</a>
+  <span></span>
+  <a href="{% url 'app:editar_jogador' jogador.pk %}" class="btn btn-warning">Editar</a>
+  <span></span>
+  <a href="{% url 'app:excluir_jogador' jogador.pk %}" class="btn btn-danger">Excluir</a>
+</div>
+
+<div class="nav-links">
+    <a href="{% url 'app:adicionar_jogador' %}">Adicionar Jogador</a>
+    <span></span>
+    <a href="{% url 'app:adicionar_personagem' %}">Adicionar Personagem</a>
+    <span></span>
+    <a href="{% url 'app:calendario' %}">Agendar sessão de jogo</a>
+</div>
+{% endblock %}

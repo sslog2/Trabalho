@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Confirmar Exclusão{% endblock title %}
+
+{% block content %}
+<h2>Confirmar Exclusão</h2>
+
+<p>
+  Você tem certeza que deseja excluir o jogador {{ jogador.nome }}?
+</p>
+
+<form method="post">
+  {% csrf_token %}
+  <button type="submit" class="btn btn-danger">Confirmar Exclusão</button>
+  <a href="{% url 'app:lista_jogador' %}" class="btn btn-secondary">Cancelar</a>
+</form>
+<div class="nav-links">
+  <a href="{% url 'app:adicionar_jogador' %}">Adicionar Jogador</a>
+  <span></span>
+  <a href="{% url 'app:adicionar_personagem' %}">Adicionar Personagem</a>
+  <span></span>
+  <a href="{% url 'app:calendario' %}">Agendar sessão de jogo</a>
+</div>
+{% endblock %}

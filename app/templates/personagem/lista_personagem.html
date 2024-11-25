@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Lista de Personagens
+{% endblock %}
+
+{% block content %}
+<div class="card">
+  <div class="card-body">
+    <!-- Tabela de Personagens -->
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Classe</th>
+          <th>Nível</th>
+          <th>Jogador</th> <!-- Adicionado campo Jogador -->
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% if personagens %}
+          {% for personagem in personagens %}
+            <tr>
+              <td>{{ personagem.nome }}</td>
+              <td>{{ personagem.classe }}</td>
+              <td>{{ personagem.nivel }}</td>
+              <td><ul><li>{{ personagem.jogador.nome }}</li></ul></td>
+              <td>
+                <a href="{% url 'app:detalhe_personagem' personagem.pk %}" class="btn btn-info btn-sm">Detalhar</a>
+                <a href="{% url 'app:editar_personagem' personagem.pk %}" class="btn btn-warning btn-sm">Editar</a>
+                <a href="{% url 'app:excluir_personagem' personagem.pk %}" class="btn btn-danger btn-sm">Excluir</a>
+              </td>
+            </tr>
+          {% empty %}
+            <tr>
+              <td colspan="5">Não há personagens cadastrados.</td> <!-- Alterado para 5 colunas -->
+            </tr>
+          {% endfor %}
+        {% else %}
+          <tr>
+            <td colspan="5">Não há personagens cadastrados.</td> <!-- Alterado para 5 colunas -->
+          </tr>
+        {% endif %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="nav-links">
+  <a href="{% url 'app:adicionar_jogador' %}">Adicionar Jogador</a>
+  <span></span>
+  <a href="{% url 'app:adicionar_personagem' %}">Adicionar Personagem</a>
+  <span></span>
+  <a href="{% url 'app:calendario' %}">Agendar sessão de jogo</a>
+</div>
+
+{% endblock %}

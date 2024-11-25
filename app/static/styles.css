@@ -1,0 +1,298 @@
+/* Resetando o estilo básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilo geral da página */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* Cabeçalho */
+header {
+    background-color: #333;
+    color: white;
+    padding: 10px 0;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2em;
+}
+
+/* Navegação */
+.nav-links {
+    display: flex; /* Torna os itens flexíveis */
+    justify-content: center; /* Centraliza os itens horizontalmente */
+    align-items: center; /* Centraliza verticalmente */
+    gap: 15px; /* Espaçamento uniforme entre os itens */
+    margin: 20px auto; /* Centraliza o div dentro do contêiner pai */
+    padding: 10px;
+}
+
+.nav-links a {
+    text-decoration: none; /* Remove o sublinhado dos links */
+    color: #007BFF; /* Cor do texto */
+    font-size: 16px; /* Tamanho da fonte */
+    padding: 8px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.nav-links a:hover {
+    background-color: #f0f0f0; /* Cor de fundo ao passar o mouse */
+}
+
+.nav-links span {
+    display: inline-block; /* Permite o espaçamento entre os links */
+    width: 1px; /* Largura para o espaçamento */
+    height: 20px; /* Altura da "linha" */
+    background-color: #ddd; /* Cor do separador */
+}
+
+/* Conteúdo principal */
+main {
+    padding: 30px 20px;
+}
+
+/* Formulários */
+form {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+form input, form select, form button, form textarea {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 1rem;
+    background-color: #f9f9f9;
+}
+
+form button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+form button:hover {
+    background-color: #0056b3;
+}
+
+button.delete-form {
+    background-color: #dc3545;
+    color: white;
+}
+
+button.delete-form:hover {
+    background-color: #c82333;
+}
+
+/* Estilos para a tabela de calendário */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    text-align: center;
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+td {
+    background-color: #fff;
+}
+
+/* Estilos principais para o calendário */
+table th {
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+table td {
+    height: 50px;
+    width: 50px;
+    vertical-align: middle;
+    position: relative;
+}
+
+table td.empty {
+    background-color: #f9f9f9;
+}
+
+/* Destaque para o dia atual */
+table td.current-day {
+    background-color: #ffeb3b;
+    color: black;
+    font-weight: bold;
+    border: 2px solid #f9a825;
+}
+
+/* Estilo para os eventos */
+table td .event {
+    position: absolute;
+    bottom: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #e57373;
+    color: white;
+    padding: 3px 8px;
+    border-radius: 5px;
+    font-size: 10px;
+}
+
+.event-indicator {
+    background-color: #f0f0f0;
+    padding: 2px;
+    margin-top: 5px;
+    font-size: 0.8em;
+    color: #333;
+}
+
+.event-description {
+    color: #007bff;
+    display: block;
+    margin: 3px 0;
+}
+
+/* Estilos para o formulário de Evento */
+.form-control {
+    width: 100%;
+    padding: 8px;
+    margin: 5px 0;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+textarea.form-control {
+    height: auto;
+    resize: vertical;
+}
+
+label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: inline-block;
+}
+
+/* Estilo para os botões de seleção (checkboxes) */
+input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+select.form-control {
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+}
+
+select.form-control option {
+    padding: 5px;
+}
+
+/* Estilos para as seções do formulário */
+.form-group {
+    margin-bottom: 20px;
+}
+
+/* Estilo para o título de criação de evento */
+h3 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Botão de envio */
+button[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+}
+
+button[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+/* Estilo para a seleção de mês */
+form select {
+    width: 120px;
+    margin-bottom: 20px;
+}
+
+/* Estilo do título do calendário */
+h3 {
+    margin-bottom: 20px;
+    font-size: 1.5em;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* Rodapé */
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #333;
+    color: white;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+
+/* Subníveis centralizados */
+ul li ul {
+    text-align: center;
+}
+
+ul li ul li {
+    background-color: #f9f9f9;
+    padding: 10px;
+    margin: 5px auto;
+    display: inline-block;
+}
+
+/* Listas */
+ul {
+    list-style: none;
+    padding: 0;
+    text-align: center; /* Centraliza o texto dos itens */
+}
+
+ul li {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    margin: 10px auto; /* Adiciona espaçamento e centraliza os itens horizontalmente */
+    padding: 15px;
+    width: fit-content; /* Ajusta a largura ao conteúdo */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: inline-block; /* Alinha os itens centralizados dentro do contêiner */
+}

@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}Detalhes do Personagem{% endblock %}
+
+{% block content %}
+<div class="card-body d-flex flex-column align-items-center">
+    <h1>Detalhes do Personagem: {{ personagem.nome }}</h1>
+</div>
+
+<div class="card">
+    <div class="card-body d-flex flex-column align-items-center">
+      <p class="card-text">
+        <strong>Classe:</strong> {{ personagem.classe }}
+      </p>
+      <p class="card-text">
+        <strong>Nível:</strong> {{ personagem.nivel }}
+      </p>
+      <p class="card-text">
+        <strong>Jogador:</strong> {{ personagem.jogador.nome }}
+      </p>
+    </div>
+  </div>
+
+<div class="nav-links">
+  <a href="{% url 'app:editar_personagem' personagem.pk %}" class="btn btn-warning">Editar</a>
+  <span></span>
+  <a href="{% url 'app:excluir_personagem' personagem.pk %}" class="btn btn-danger">Excluir</a>
+  <span></span>
+  <a href="{% url 'app:lista_personagem' %}" class="btn btn-secondary">Voltar à lista</a>
+</div>
+
+<div class="nav-links">
+    <a href="{% url 'app:adicionar_jogador' %}">Adicionar Jogador</a>
+    <span></span>
+    <a href="{% url 'app:adicionar_personagem' %}">Adicionar Personagem</a>
+    <span></span>
+    <a href="{% url 'app:calendario' %}">Agendar sessão de jogo</a>
+</div>
+{% endblock %}

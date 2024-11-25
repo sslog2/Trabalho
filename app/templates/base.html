@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}D&D Site{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    {% block head %}{% endblock %}
+</head>
+<body>
+    <div class="page-wrapper">
+        <header>
+            <h1>
+                <img src="{% static 'images/DD-Logo.png' %}" alt="D&D Icon" style="height: 40px; vertical-align: middle;">
+                Meu Site de D&D
+            </h1>
+            {% if request.resolver_match.url_name != 'login' %}
+            <nav>
+                <ul class="navbar">
+                    <li><a href="{% url 'app:calendario' %}">Calendário</a></li>
+                    <li><a href="{% url 'app:lista_personagem' %}">Personagens (CRUD)</a></li>
+                    <li><a href="{% url 'app:lista_jogador' %}">Jogadores (CRUD)</a></li>
+                    <li><a href="{% url 'app:spell_list' %}">Lista Magias</a></li>
+                    <li><a href="{% url 'app:login' %}">logout</a></li>
+                </ul>
+            </nav>
+            {% endif %}
+        </header>
+        <main>
+            <div class="container">
+                <div class="content">
+                    {% block content %}{% endblock %}
+                </div>
+            </div>
+        </main>
+        <footer>
+            <p>&copy; 2024 - Sistema de Eventos e D&D</p>
+        </footer>
+    </div>
+</body>
+</html>

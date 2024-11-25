@@ -1,0 +1,34 @@
+services:
+  mongodb:
+    image: mongo:5.0.8
+    container_name: mongodb
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: admin
+      MONGO_INITDB_DATABASE: mydatabase
+    restart: always
+    volumes:
+      - mongodb_data:/data/db
+
+  api:
+    build:
+      context: .
+    ports:
+      - "8000:8000"
+    command: >
+      sh -c "
+        python manage.py makemigrations && 
+        python manage.py migrate && 
+        python manage.py shell -c \"from django.contrib.auth.models import User; User.objects.create_superuser('admin', 'youremail@example.com', 'admin')\" &&
+        python manage.py fetch_spells &&
+        python manage.py runserver 0.0.0.0:8000"
+    restart: always
+    depends_on:
+      - mongodb
+    volumes:
+      - .:/app
+    environment:
+      MONGO_DB_URI: "mongodb://admin:admin@mongodb:27017/mydatabase?authSource=admin"
+  
+volumes:
+  mongodb_data:

@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}Editar Personagem{% endblock %}
+
+{% block content %}
+    <h2>Editar Personagem: {{ form.instance.nome }}</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-success">Salvar Alterações</button>
+        <a href="{% url 'app:detalhe_personagem' form.instance.pk %}" class="btn btn-secondary">Cancelar</a>
+    </form>
+    <div class="nav-links">
+        <a href="{% url 'app:adicionar_jogador' %}">Adicionar Jogador</a>
+        <span></span>
+        <a href="{% url 'app:adicionar_personagem' %}">Adicionar Personagem</a>
+        <span></span>
+        <a href="{% url 'app:calendario' %}">Agendar sessão de jogo</a>
+      </div>
+{% endblock %}

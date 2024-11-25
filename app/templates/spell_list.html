@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}Spells List{% endblock %}
+
+{% block content %}
+    <h1>Lista de Magias</h1>
+    <ul>
+        {% for spell in spells %}
+            <li>
+                <a href="{% url 'app:spell_detail' spell.id %}">{{ spell.name }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

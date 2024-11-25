@@ -1,0 +1,23 @@
+<!-- spell_detail.html -->
+{% extends 'base.html' %}
+
+{% block title %}Spell Detail: {{ spell.name }}{% endblock %}
+
+{% block content %}
+<div class="spell-detail">
+    <h1 class="spell-name">{{ spell.name }}</h1>
+    <ul>
+        <li><strong>Level:</strong> {{ spell.level }}</li>
+        <li><strong>School:</strong> {{ spell.school.name }}</li>
+        <li><strong>Range:</strong> {{ spell.range }}</li>
+        <li><strong>Components:</strong> {{ spell.components|join:", " }}</li>
+        <li><strong>Casting Time:</strong> {{ spell.casting_time }}</li>
+        <li><strong>Description:</strong> {{ spell.desc|join:"<br>" }}</li>
+        <li>
+            <a href="{% url 'app:spell_list' %}" style="text-decoration: none; color: #007BFF; font-weight: bold;">
+                &larr; Back to Spell List
+            </a>
+        </li>
+</ul>
+</div>
+{% endblock %}

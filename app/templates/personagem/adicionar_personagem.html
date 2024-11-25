@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h2>Adicionar Novo Personagem</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Salvar</button>
+  </form>
+  <div class="nav-links">
+    <a href="{% url 'app:lista_jogador' %}">Voltar para a Lista de Jogadores</a>
+  </div>
+  <div class="nav-links">
+    <a href="{% url 'app:adicionar_jogador' %}">Adicionar Jogador</a>
+    <span></span>
+    <a href="{% url 'app:adicionar_personagem' %}">Adicionar Personagem</a>
+    <span></span>
+    <a href="{% url 'app:calendario' %}">Agendar sessão de jogo</a>
+  </div>
+{% endblock %}

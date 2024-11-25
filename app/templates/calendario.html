@@ -1,0 +1,120 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="card-body d-flex flex-column align-items-center">
+    <h2>{{ month_name }} {{ year }}</h2>
+  </div>
+
+
+<!-- Seleção de Mês -->
+<div style="display: flex; justify-content: center; align-items: center; width: 100%;">
+    <form method="GET" action="{% url 'app:calendario' %}">
+      <select name="month" onchange="this.form.submit()" style="text-align: center;">
+        {% for m in months %}
+          <option value="{{ m.0 }}" {% if m.0 == selected_month %}selected{% endif %}>
+            {{ m.1 }}
+          </option>
+        {% endfor %}
+      </select>
+    </form>
+  </div>
+  <!-- Exibir Calendário -->
+  <table>
+    <thead>
+      <tr>
+        <th>Dom</th>
+        <th>Seg</th>
+        <th>Ter</th>
+        <th>Qua</th>
+        <th>Qui</th>
+        <th>Sex</th>
+        <th>Sáb</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for week in calendar %}
+        <tr>
+          {% for day in week %}
+            <td>
+              {% if day %}
+                <div>{{ day.day }}</div>
+                {% for event in event_days %}
+                  {% if event.0 == day.day %}
+                    {% for evento in event.1 %}
+                      <p>{{ evento.descricao }}</p>
+                      <p><strong>Jogadores:</strong> 
+                        {% for jogador in evento.jogadores.all %}
+                          {{ jogador.nome }}{% if not forloop.last %}, {% endif %}
+                        {% endfor %}
+                      </p>
+                      <p><strong>Personagens:</strong> 
+                        {% for personagem in evento.personagem.all %}
+                          {{ personagem.nome }}{% if not forloop.last %}, {% endif %}
+                        {% endfor %}
+                      </p>
+                      <form method="POST" action="{% url 'app:excluir_evento' evento.id %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger">Excluir Evento</button>
+                      </form>
+                    {% endfor %}
+                  {% endif %}
+                {% endfor %}
+              {% endif %}
+            </td>
+          {% endfor %}
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <!-- Formulário de Criação de Evento -->
+  <h3>Criar Evento</h3>
+  <form method="POST">
+    {% csrf_token %}
+    
+    <!-- Descrição -->
+    <div class="form-group mb-4">
+        <label for="id_descricao" class="form-label">Descrição:</label>
+        <div class="input-group">
+            {{ evento_form.descricao }}
+        </div>
+    </div>
+  
+    <!-- Data do Evento -->
+    <div class="form-group mb-4">
+        <label for="id_data_evento" class="form-label">Data do Evento:</label>
+        <div class="input-group">
+            {{ evento_form.data_evento }}
+        </div>
+    </div>
+  
+    <!-- Hora do Evento -->
+    <div class="form-group mb-4">
+        <label for="id_hora_evento" class="form-label">Hora do Evento:</label>
+        <div class="input-group">
+            {{ evento_form.hora_evento }}
+        </div>
+    </div>
+  
+    <!-- Seleção de Jogadores -->
+    <div class="form-group mb-4">
+        <label for="id_jogadores" class="form-label">Jogadores:</label>
+        <div class="input-group">
+            {{ evento_form.jogadores }}
+        </div>
+    </div>
+  
+    <!-- Seleção de Personagens -->
+    <div class="form-group mb-4">
+        <label for="id_personagem" class="form-label">Personagens:</label>
+        <div class="input-group">
+            {{ evento_form.personagem }}
+        </div>
+    </div>
+  
+    <!-- Botão de Submissão -->
+    <div class="text-center mb-4">
+        <button type="submit" class="btn btn-primary btn-lg mt-4">Criar Evento</button>
+    </div>
+</form>
+{% endblock %}
