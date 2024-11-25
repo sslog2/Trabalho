@@ -1,4 +1,4 @@
-# workshop-fabrica-2024.2
+# Paradigmas de Linguagens de Programacao
 Projeto de django de Márcio Souto Maior Sousa, José Matheos Mendonça Farias, Milena Soares
 
 ## Sobre o Projeto
